@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PC CINEMATIC | Premium Video Editing Studio</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+ --blue:#00c8ff;
+ --red:#ff174d;
+ --purple:#bd39ff;
+ --gold:#ffc94a;
+ --dark:#030611;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+ background:var(--dark);
+ color:white;
+ font-family:Arial,sans-serif;
+ overflow-x:hidden;
+}
+
+button{cursor:pointer;font-family:inherit}
+
+/* BACKGROUND */
+
+body:before{
+ content:"";
+ position:fixed;
+ inset:0;
+ z-index:-3;
+ background:
+ radial-gradient(ellipse at 5% 35%,#006bba55,transparent 38%),
+ radial-gradient(ellipse at 95% 35%,#ff003e44,transparent 38%),
+ linear-gradient(120deg,#02040d,#10102a,#08030d);
+}
+
+.aurora{
+ position:fixed;
+ width:450px;
+ height:450px;
+ border-radius:50%;
+ filter:blur(110px);
+ opacity:.35;
+ z-index:-2;
+ pointer-events:none;
+ animation:float 8s infinite alternate ease-in-out;
+}
+.blue{background:#00aaff;left:-180px;top:20%}
+.red{background:#ff003c;right:-180px;top:30%}
+
+@keyframes float{
+ to{transform:translateY(100px) scale(1.3)}
+}
+
+/* NAVBAR */
+
+header{
+ position:sticky;
+ top:0;
+ z-index:50;
+ background:#050816eF;
+ border-bottom:1px solid #d7a83c77;
+ backdrop-filter:blur(15px);
+}
+
+.nav{
+ max-width:1250px;
+ margin:auto;
+ padding:14px 20px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px;
+}
+
+.logo{
+ font-size:25px;
+ font-weight:1000;
+ color:var(--gold);
+ text-shadow:0 0 12px #ffae00,0 0 30px #ffae00;
+ letter-spacing:2px;
+}
+
+.logo span{color:white}
+
+.navlinks{
+ display:flex;
+ gap:22px;
+ align-items:center;
+ flex-wrap:wrap;
+}
+
+.navlinks a{
+ text-decoration:none;
+ color:white;
+ font-size:13px;
+ font-weight:bold;
+ transition:.3s;
+}
+
+.navlinks a:hover{color:var(--gold)}
+
+.gold-btn{
+ border:1px solid var(--gold);
+ background:linear-gradient(120deg,#ffbd35,#fff0a0,#bd7600);
+ color:#160c00;
+ font-weight:900;
+ padding:12px 22px;
+ border-radius:30px;
+ box-shadow:0 0 18px #ffbd35;
+ transition:.3s;
+}
+
+.gold-btn:hover{transform:scale(1.07);box-shadow:0 0 30px gold}
+
+/* HERO */
+
+.hero{
+ min-height:730px;
+ padding:65px 20px 50px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ position:relative;
+ overflow:hidden;
+}
+
+.hero-content{
+ width:100%;
+ max-width:1000px;
+ position:relative;
+ z-index:2;
+}
+
+.welcome{
+ color:white;
+ font-size:22px;
+ letter-spacing:7px;
+ text-shadow:0 0 20px var(--blue);
+}
+
+.tagline{
+ color:var(--blue);
+ letter-spacing:6px;
+ font-size:12px;
+ margin-top:12px;
+}
+
+.ring{
+ position:absolute;
+ width:430px;
+ height:430px;
+ border:2px solid #00cfff88;
+ border-radius:50%;
+ top:65px;
+ left:50%;
+ transform:translateX(-50%);
+ box-shadow:0 0 35px #00aaff, inset 0 0 35px #00aaff44;
+ animation:ring 12s linear infinite;
+}
+
+.ring:before{
+ content:"";
+ position:absolute;
+ inset:35px;
+ border:2px dashed var(--purple);
+ border-radius:50%;
+}
+
+.ring:after{
+ content:"";
+ position:absolute;
+ inset:80px;
+ border:2px solid #00d9ff99;
+ border-radius:50%;
+}
+
+@keyframes ring{
+ to{rotate:360deg}
+}
+
+/* 3D GIMBAL */
+
+.gimbal{
+ width:150px;
+ height:240px;
+ margin:25px auto 0;
+ position:relative;
+ perspective:700px;
+ animation:gimbalMove 5s ease-in-out infinite;
+ filter:drop-shadow(0 0 22px #00cfff);
+}
+
+@keyframes gimbalMove{
+ 0%,100%{transform:rotateY(-15deg) rotateZ(-4deg)}
+ 50%{transform:rotateY(15deg) rotateZ(4deg)}
+}
+
+.handle{
+ position:absolute;
+ width:43px;
+ height:145px;
+ background:linear-gradient(90deg,#101728,#64738e,#101728);
+ border:2px solid #687d9d;
+ border-radius:18px;
+ left:55px;
+ top:78px;
+ transform:rotate(18deg);
+ box-shadow:0 0 15px #00cfff66;
+}
+
+.grip{
+ position:absolute;
+ width:62px;
+ height:65px;
+ left:43px;
+ bottom:0;
+ border-radius:17px;
+ background:linear-gradient(135deg,#697b9d,#11182d,#34445e);
+ border:2px solid #00cfff;
+ box-shadow:0 0 20px #00cfff;
+}
+
+.grip:after{
+ content:"";
+ position:absolute;
+ width:32px;
+ height:13px;
+ border:2px solid #00eaff;
+ border-radius:5px;
+ left:13px;
+ top:15px;
+ box-shadow:0 0 10px #00eaff;
+}
+
+.arm{
+ position:absolute;
+ top:90px;
+ left:20px;
+ width:110px;
+ height:28px;
+ border-radius:20px;
+ background:linear-gradient(#8996b4,#192239);
+ border:2px solid #637caa;
+}
+
+.ball{
+ position:absolute;
+ top:68px;
+ width:55px;
+ height:55px;
+ border-radius:50%;
+ background:radial-gradient(circle at 30% 25%,#e0eaff,#65738d 35%,#080d20 75%);
+ border:2px solid #00cfff;
+ box-shadow:0 0 20px #00bfff;
+ z-index:3;
+}
+
+.ball.left{left:5px}
+.ball.right{right:5px}
+
+.phone{
+ position:absolute;
+ top:0;
+ left:51px;
+ width:52px;
+ height:110px;
+ border-radius:14px;
+ background:linear-gradient(90deg,#080c20,#313653,#080c20);
+ border:4px solid #313d64;
+ transform:rotate(-7deg);
+ box-shadow:0 0 15px var(--purple);
+}
+
+.phone:after{
+ content:"";
+ position:absolute;
+ inset:12px 7px;
+ border:1px solid var(--purple);
+ border-radius:6px;
+}
+
+.hero h1{
+ position:relative;
+ margin-top:30px;
+ font-size:clamp(40px,8vw,88px);
+ font-weight:1000;
+ letter-spacing:4px;
+ background:linear-gradient(90deg,#bd5aff,#fff,#00d9ff,#ff4b7b);
+ color:transparent;
+ background-clip:text;
+ -webkit-background-clip:text;
+ text-shadow:0 0 30px #8e39ff66;
+ animation:shine 4s infinite linear;
+}
+
+@keyframes shine{
+ 50%{filter:brightness(1.6)}
+}
+
+.hero-sub{
+ color:#d6d8ff;
+ letter-spacing:3px;
+ margin:10px 0 25px;
+}
+
+.hero-actions{
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:15px;
+}
+
+.neon-btn{
+ background:#080d24;
+ color:white;
+ border:1px solid var(--blue);
+ border-radius:35px;
+ padding:15px 28px;
+ font-weight:bold;
+ box-shadow:0 0 15px #00bfff66;
+ transition:.3s;
+}
+
+.neon-btn:hover{
+ background:var(--blue);
+ color:#00101c;
+ box-shadow:0 0 30px var(--blue);
+ transform:translateY(-4px);
+}
+
+.scroll{
+ margin-top:40px;
+ color:#8ca4c8;
+ font-size:12px;
+ letter-spacing:5px;
+}
+
+/* SECTIONS */
+
+section{
+ padding:75px 20px;
+ max-width:1250px;
+ margin:auto;
+}
+
+.section-title{
+ text-align:center;
+ font-size:clamp(27px,5vw,42px);
+ color:var(--gold);
+ text-shadow:0 0 18px #ffb70088;
+ margin-bottom:35px;
+}
+
+.section-title:after{
+ content:"";
+ display:block;
+ width:110px;
+ height:3px;
+ margin:13px auto;
+ background:linear-gradient(90deg,var(--blue),var(--purple),var(--red));
+ box-shadow:0 0 12px var(--blue);
+}
+
+/* SERVICES */
+
+.services{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:20px;
+}
+
+.service{
+ background:linear-gradient(145deg,#101a35,#090b18);
+ border:1px solid #00bfff77;
+ border-radius:16px;
+ overflow:hidden;
+ box-shadow:0 0 15px #00aaff22;
+ transition:.35s;
+}
+
+.service:hover{
+ transform:translateY(-8px);
+ border-color:var(--purple);
+ box-shadow:0 0 25px #a000ff66;
+}
+
+.service-art{
+ height:125px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:65px;
+ background:
+ radial-gradient(circle,#263e70,#080b1c 75%);
+}
+
+.service-info{
+ padding:18px;
+ text-align:center;
+}
+
+.service h3{margin-bottom:15px;font-size:17px}
+
+.service button{
+ width:100%;
+ padding:11px;
+ border:0;
+ border-radius:25px;
+ background:linear-gradient(90deg,#ffc53d,#fff0a0);
+ color:#170d00;
+ font-weight:900;
+}
+
+/* RATE BOARD */
+
+.rate-wrap{
+ max-width:900px;
+ margin:auto;
+ background:linear-gradient(145deg,#101a32,#050814);
+ border:2px solid var(--gold);
+ border-radius:20px;
+ padding:28px;
+ box-shadow:0 0 30px #ffba3344;
+}
+
+.rate-heading{
+ text-align:center;
+ font-size:30px;
+ color:var(--gold);
+ margin-bottom:20px;
+ text-shadow:0 0 15px gold;
+}
+
+.rate-subtitle{
+ color:var(--blue);
+ font-size:18px;
+ letter-spacing:3px;
+ margin:22px 0 12px;
+ border-bottom:1px solid #53627b;
+ padding-bottom:10px;
+}
+
+.rate-row{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ padding:13px 5px;
+ border-bottom:1px solid #ffffff25;
+}
+
+.rate-row span:last-child{
+ color:var(--gold);
+ font-weight:900;
+ white-space:nowrap;
+}
+
+.rate-order{
+ text-align:center;
+ margin-top:25px;
+}
+
+/* ABOUT */
+
+.about{
+ text-align:center;
+ line-height:1.9;
+ color:#c5d0e5;
+ max-width:800px;
+ margin:auto;
+}
+
+/* FOOTER */
+
+footer{
+ text-align:center;
+ padding:35px 15px;
+ background:#03040a;
+ border-top:1px solid #ffbc4355;
+ color:#aab2c9;
+}
+
+footer strong{
+ color:var(--gold);
+ text-shadow:0 0 12px gold;
+}
+
+/* MODAL */
+
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:100;
+ background:#000d;
+ backdrop-filter:blur(9px);
+ align-items:center;
+ justify-content:center;
+ padding:15px;
+}
+
+.modal-box{
+ width:100%;
+ max-width:480px;
+ max-height:90vh;
+ overflow-y:auto;
+ padding:28px;
+ background:linear-gradient(145deg,#17203b,#070a16);
+ border:1px solid var(--blue);
+ border-radius:20px;
+ box-shadow:0 0 35px #00bfff66;
+}
+
+.modal-box h2{
+ text-align:center;
+ color:var(--gold);
+ margin-bottom:20px;
+}
+
+.modal-box input,
+.modal-box select,
+.modal-box textarea{
+ display:block;
+ width:100%;
+ margin:12px 0;
+ padding:14px;
+ border:1px solid #526585;
+ border-radius:9px;
+ background:#080e20;
+ color:white;
+ outline:none;
+}
+
+.modal-box textarea{resize:vertical}
+
+.modal-buttons{
+ display:flex;
+ gap:10px;
+ margin-top:15px;
+ flex-wrap:wrap;
+}
+
+.modal-buttons button{
+ flex:1 1 100px;
+ padding:13px 8px;
+ border-radius:25px;
+ border:0;
+ font-weight:bold;
+}
+
+.send-btn{
+ background:#20d66b;
+ color:#001b0a;
+}
+
+.close-btn{
+ background:#29344e;
+ color:white;
+}
+
+.group-btn{
+ background:linear-gradient(90deg,#16c96b,#8cffb7);
+ color:#00240e;
+}
+
+.whatsapp-float{
+ position:fixed;
+ bottom:20px;
+ right:20px;
+ z-index:40;
+ border:1px solid #40ff8c;
+ border-radius:40px;
+ padding:14px 22px;
+ background:#0cbd60;
+ color:#001b0a;
+ font-weight:900;
+ box-shadow:0 0 20px #00ff7788;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+ .services{grid-template-columns:repeat(2,1fr)}
+ .nav{flex-direction:column}
+ .navlinks{justify-content:center;gap:13px}
+ .hero{min-height:680px}
+}
+
+@media(max-width:480px){
+ .services{grid-template-columns:1fr}
+ .rate-wrap{padding:17px}
+ .ring{width:330px;height:330px}
+ .welcome{font-size:17px}
+ .tagline{letter-spacing:3px}
+ .navlinks a{font-size:11px}
+ .whatsapp-float{padding:12px 15px;font-size:12px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="aurora blue"></div>
+<div class="aurora red"></div>
+
+<header>
+ <div class="nav">
+  <div class="logo">✦ PC <span>CINEMATIC</span></div>
+
+  <nav class="navlinks">
+   <a href="#home">HOME</a>
+   <a href="#rates">RATE BOARD</a>
+   <a href="#services">SERVICES</a>
+   <a href="#about">ABOUT US</a>
+   <a href="#contact">CONTACT</a>
+  </nav>
+
+  <button class="gold-btn" onclick="openOrder('General Enquiry')">
+   ORDER NOW
+  </button>
+ </div>
+</header>
+
+<!-- HERO -->
+
+<div class="hero" id="home">
+
+ <div class="ring"></div>
+
+ <div class="hero-content">
+
+  <div class="welcome">WELCOME TO</div>
+  <div class="tagline">YOUR MOMENTS · OUR CINEMATIC TOUCH</div>
+
+  <div class="gimbal">
+   <div class="phone"></div>
+   <div class="ball left"></div>
+   <div class="ball right"></div>
+   <div class="arm"></div>
+   <div class="handle"></div>
+   <div class="grip"></div>
+  </div>
+
+  <h1>PC CINEMATIC</h1>
+
+  <div class="hero-sub">
+   MAKE EVERY MOMENT A MOVIE
+  </div>
+
+  <div class="hero-actions">
+   <a href="#services">
+    <button class="neon-btn">EXPLORE OUR WORK</button>
+   </a>
+
+   <button class="neon-btn"
+    onclick="openOrder('General Enquiry')">
+    WHATSAPP ORDER
+   </button>
+  </div>
+
+  <div class="scroll">SCROLL TO DISCOVER ↓</div>
+
+ </div>
+</div>
+
+<!-- SERVICES -->
+
+<section id="services">
+
+ <h2 class="section-title">OUR SERVICES</h2>
+
+ <div class="services">
+
+  <div class="service">
+   <div class="service-art">💍</div>
+   <div class="service-info">
+    <h3>Wedding Video Editing</h3>
+    <button onclick="openOrder('Wedding Video Editing')">ORDER NOW →</button>
+   </div>
+  </div>
+
+  <div class="service">
+   <div class="service-art">🎂</div>
+   <div class="service-info">
+    <h3>Birthday Video Editing</h3>
+    <button onclick="openOrder('Birthday Video Editing')">ORDER NOW →</button>
+   </div>
+  </div>
+
+  <div class="service">
+   <div class="service-art">🎬</div>
+   <div class="service-info">
+    <h3>Cinematic Reels</h3>
+    <button onclick="openOrder('Cinematic Reels')">ORDER NOW →</button>
+   </div>
+  </div>
+
+  <div class="service">
+   <div class="service-art">❤️</div>
+   <div class="service-info">
+    <h3>Pre-Wedding Editing</h3>
+    <button onclick="openOrder('Pre-Wedding Editing')">ORDER NOW →</button>
+   </div>
+  </div>
+
+  <div class="service">
+   <div class="service-art">💌</div>
+   <div class="service-info">
+    <h3>Invitation Video</h3>
+    <button onclick="openOrder('Invitation Video')">ORDER NOW →</button>
+   </div>
+  </div>
+
+  <div class="service">
+   <div class="service-art">📸</div>
+   <div class="service-info">
+    <h3>Photo Slideshow</h3>
+    <button onclick="openOrder('Photo Slideshow')">ORDER NOW →</button>
+   </div>
+  </div>
+
+  <div class="service">
+   <div class="service-art">▶️</div>
+   <div class="service-info">
+    <h3>YouTube Video Editing</h3>
+    <button onclick="openOrder('YouTube Video Editing')">ORDER NOW →</button>
+   </div>
+  </div>
+
+  <div class="service">
+   <div class="service-art">✨</div>
+   <div class="service-info">
+    <h3>Other Editing</h3>
+    <button onclick="openOrder('Other Editing')">ORDER NOW →</button>
+   </div>
+  </div>
+
+ </div>
+</section>
+
+<!-- RATE BOARD -->
+
+<section id="rates">
+
+ <h2 class="section-title">✦ OUR RATE BOARD ✦</h2>
+
+ <div class="rate-wrap">
+
+  <div class="rate-heading">PC CINEMATIC PRICING</div>
+
+  <div class="rate-subtitle">🎥 CINEMATIC SHOOT</div>
+
+  <div class="rate-row">
+   <span>Cinematic Video</span>
+   <span>₹ 999/-</span>
+  </div>
+
+  <div class="rate-row">
+   <span>Political Video</span>
+   <span>₹ 1,499/-</span>
+  </div>
+
+  <div class="rate-row">
+   <span>Birthday Celebration</span>
+   <span>₹ 999/-</span>
+  </div>
+
+  <div class="rate-row">
+   <span>Fun Ceremony</span>
+   <span>₹ 1,999/-</span>
+  </div>
+
+  <div class="rate-row">
+   <span>Wedding Ceremony</span>
+   <span>₹ 1,499/-</span>
+  </div>
+
+  <div class="rate-row">
+   <span>Car / Bike Shoot</span>
+   <span>₹ 1,499/-</span>
+  </div>
+
+  <div class="rate-subtitle">✂ VIDEO EDITING</div>
+
+  <div class="rate-row">
+   <span>Basic Edit</span>
+   <span>₹ 499/-</span>
+  </div>
+
+  <div class="rate-row">
+   <span>Reels Edit</span>
+   <span>₹ 599/-</span>
+  </div>
+
+  <div class="rate-row">
+   <span>Cinematic Edit</span>
+   <span>₹ 799/-</span>
+  </div>
+
+  <div class="rate-order">
+   <button class="gold-btn"
+    onclick="openOrder('Rate Board Enquiry')">
+    ORDER NOW
+   </button>
+  </div>
+
+ </div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+ <h2 class="section-title">ABOUT PC CINEMATIC</h2>
+
+ <div class="about">
+  <h3 style="color:#ffc94a;margin-bottom:15px">
+   MAKE EVERY MOMENT A MOVIE
+  </h3>
+
+  We create beautiful cinematic memories through
+  professional video editing and creative visual effects.
+
+  <br><br>
+
+  Wedding Films · Birthday Videos · Cinematic Reels ·
+  Pre-Wedding · Invitations · YouTube Editing.
+
+  <br><br>
+
+  <strong style="color:#00d9ff">
+   YOUR MOMENTS · OUR CINEMATIC TOUCH
+  </strong>
+ </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+ <h2 class="section-title">CONTACT US</h2>
+
+ <div style="text-align:center;line-height:2">
+  <p>Have a project in mind?</p>
+  <p>Let's create something cinematic!</p>
+  <br>
+  <button class="gold-btn"
+   onclick="openOrder('Contact Enquiry')">
+   CONTACT & ORDER NOW
+  </button>
+ </div>
+</section>
+
+<footer>
+ <strong>✦ PC CINEMATIC ✦</strong>
+ <p style="margin-top:10px">MAKE EVERY MOMENT A MOVIE</p>
+ <p style="margin-top:12px;font-size:12px">
+  © 2026 PC CINEMATIC. All Rights Reserved.
+ </p>
+</footer>
+
+<button class="whatsapp-float"
+ onclick="openOrder('WhatsApp Enquiry')">
+ ☎ CHAT ON WHATSAPP
+</button>
+
+<!-- ORDER MODAL -->
+
+<div class="modal" id="orderModal">
+ <div class="modal-box">
+
+  <h2>✦ PLACE YOUR ORDER ✦</h2>
+
+  <form id="orderForm">
+
+   <input id="customerName"
+    type="text" placeholder="Your Full Name" required>
+
+   <input id="customerPhone"
+    type="tel" placeholder="Your Mobile Number"
+    pattern="[0-9]{10}" maxlength="10" required>
+
+   <input id="customerCity"
+    type="text" placeholder="Your City" required>
+
+   <select id="customerService" required>
+    <option value="">Select Video Editing Service</option>
+    <option>Wedding Video Editing</option>
+    <option>Birthday Video Editing</option>
+    <option>Cinematic Reels</option>
+    <option>Pre-Wedding Editing</option>
+    <option>Invitation Video</option>
+    <option>Photo Slideshow</option>
+    <option>YouTube Video Editing</option>
+    <option>Other Editing</option>
+    <option>Cinematic Shoot</option>
+    <option>Political Video</option>
+    <option>Birthday Celebration</option>
+    <option>Fun Ceremony</option>
+    <option>Wedding Ceremony</option>
+    <option>Car / Bike Shoot</option>
+    <option>Basic Edit</option>
+    <option>Reels Edit</option>
+    <option>Cinematic Edit</option>
+   </select>
+
+   <textarea id="customerDetails"
+    rows="4"
+    placeholder="Describe your video requirements..."></textarea>
+
+   <div class="modal-buttons">
+
+    <button type="submit" class="send-btn">
+     SEND TO WHATSAPP
+    </button>
+
+    <button type="button" class="group-btn"
+     onclick="joinWhatsAppGroup()">
+     JOIN WHATSAPP GROUP
+    </button>
+
+    <button type="button" class="close-btn"
+     onclick="closeOrder()">
+     CANCEL
+    </button>
+
+   </div>
+
+  </form>
+ </div>
+</div>
+
+<script>
+
+/* Replace this with your own WhatsApp number.
+   Include country code, without + or spaces. */
+
+const WHATSAPP_NUMBER = "91XXXXXXXXXX";
+
+/* UPDATED WHATSAPP GROUP LINK */
+
+const WHATSAPP_GROUP_LINK =
+"https://chat.whatsapp.com/GSHwey9hD2OLEbzVAshtRA?s=cl&p=a&iam=2";
+
+function joinWhatsAppGroup(){
+ window.open(WHATSAPP_GROUP_LINK,"_blank","noopener,noreferrer");
+}
+
+function openOrder(service){
+
+ const modal=document.getElementById("orderModal");
+
+ modal.style.display="flex";
+
+ const select=document.getElementById("customerService");
+
+ if(service && service!=="General Enquiry"
+    && service!=="Contact Enquiry"
+    && service!=="WhatsApp Enquiry"
+    && service!=="Rate Board Enquiry"){
+
+  select.value=service;
+ }else{
+  select.value="";
+ }
+}
+
+function closeOrder(){
+ document.getElementById("orderModal").style.display="none";
+}
+
+document.getElementById("orderForm")
+.addEventListener("submit",function(e){
+
+ e.preventDefault();
+
+ const name=document.getElementById("customerName").value.trim();
+ const phone=document.getElementById("customerPhone").value.trim();
+ const city=document.getElementById("customerCity").value.trim();
+ const service=document.getElementById("customerService").value;
+ const details=document.getElementById("customerDetails").value.trim();
+
+ if(!/^[0-9]{10}$/.test(phone)){
+  alert("Please enter a valid 10-digit mobile number.");
+  return;
+ }
+
+ if(!/^[0-9]{10,15}$/.test(WHATSAPP_NUMBER)){
+  alert("Website owner: Please add your WhatsApp number in the code first.");
+  return;
+ }
+
+ const message=
+ `NEW ORDER - PC CINEMATIC
+
+Customer Name: ${name}
+Mobile Number: ${phone}
+City: ${city}
+Service: ${service}
+
+Requirements: ${details}
+
+I would like to discuss my video editing order.`;
+
+ const url=
+ "https://wa.me/"+WHATSAPP_NUMBER+
+ "?text="+encodeURIComponent(message);
+
+ window.open(url,"_blank");
+
+ closeOrder();
+});
+
+/* Close modal when clicking outside */
+
+document.getElementById("orderModal")
+.addEventListener("click",function(e){
+ if(e.target===this)closeOrder();
+});
+
+</script>
+
+</body>
+</html>
